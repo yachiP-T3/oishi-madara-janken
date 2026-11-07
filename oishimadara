@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>じゃんけん</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f1f4f9;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.game {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 25px #0001;
+}
+
+h1 {
+    color: #333;
+}
+
+.hands {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 30px 0;
+}
+
+button {
+    border: none;
+    background: #e9efff;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 35px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #cddcff;
+    transform: scale(1.08);
+}
+
+.result {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 25px 0;
+    min-height: 60px;
+}
+
+.score {
+    color: #666;
+    font-size: 15px;
+}
+
+#reset {
+    font-size: 14px;
+    background: #eee;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="game">
+    <h1>✊ じゃんけん ✌️</h1>
+    <p>好きな手を選んでね！</p>
+
+    <div class="hands">
+        <button onclick="play('グー')">✊</button>
+        <button onclick="play('チョキ')">✌️</button>
+        <button onclick="play('パー')">✋</button>
+    </div>
+
+    <div id="result" class="result">
+        じゃんけん……
+    </div>
+
+    <p id="detail">あなた：？　CPU：？</p>
+
+    <div class="score">
+        勝ち：<span id="win">0</span>　
+        負け：<span id="lose">0</span>　
+        あいこ：<span id="draw">0</span>
+    </div>
+
+    <button id="reset" onclick="resetGame()">スコアリセット</button>
+</div>
+
+<script>
+let win = 0;
+let lose = 0;
+let draw = 0;
+
+const hands = ['グー', 'チョキ', 'パー'];
+
+function play(myHand) {
+    const cpuHand = hands[Math.floor(Math.random() * 3)];
+
+    let result;
+
+    if (myHand === cpuHand) {
+        result = 'あいこ！';
+        draw++;
+    } else if (
+        (myHand === 'グー' && cpuHand === 'チョキ') ||
+        (myHand === 'チョキ' && cpuHand === 'パー') ||
+        (myHand === 'パー' && cpuHand === 'グー')
+    ) {
+        result = 'あなたの勝ち！！🎉';
+        win++;
+    } else {
+        result = 'あなたの負け……';
+        lose++;
+    }
+
+    document.getElementById('result').textContent = result;
+    document.getElementById('detail').textContent =
+        `あなた：${myHand}　CPU：${cpuHand}`;
+
+    document.getElementById('win').textContent = win;
+    document.getElementById('lose').textContent = lose;
+    document.getElementById('draw').textContent = draw;
+}
+
+function resetGame() {
+    win = 0;
+    lose = 0;
+    draw = 0;
+
+    document.getElementById('win').textContent = 0;
+    document.getElementById('lose').textContent = 0;
+    document.getElementById('draw').textContent = 0;
+    document.getElementById('result').textContent = 'じゃんけん……';
+    document.getElementById('detail').textContent = 'あなた：？　CPU：？';
+}
+</script>
+
+</body>
+</html>
