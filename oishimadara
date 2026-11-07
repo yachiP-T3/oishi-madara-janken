@@ -46,8 +46,9 @@ button {
     border: none;
     background: #e9efff;
     border-radius: 15px;
-    padding: 15px;
-    font-size: 35px;
+    padding: 18px 12px;
+    font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
 }
@@ -80,13 +81,13 @@ button:hover {
 <body>
 
 <div class="game">
-    <h1>✊ じゃんけん ✌️</h1>
-    <p>好きな手を選んでね！</p>
+    <h1>じゃんけん</h1>
+    <p>好きな手を選んでね</p>
 
     <div class="hands">
-        <button onclick="play('グー')">✊</button>
-        <button onclick="play('チョキ')">✌️</button>
-        <button onclick="play('パー')">✋</button>
+        <button onclick="play('うぇい')">うぇい</button>
+        <button onclick="play('かなちゃん')">かなちゃん</button>
+        <button onclick="play('てるき')">てるき</button>
     </div>
 
     <div id="result" class="result">
@@ -109,7 +110,7 @@ let win = 0;
 let lose = 0;
 let draw = 0;
 
-const hands = ['グー', 'チョキ', 'パー'];
+const hands = ['うぇい', 'かなちゃん', 'てるき'];
 
 function play(myHand) {
     const cpuHand = hands[Math.floor(Math.random() * 3)];
@@ -117,17 +118,17 @@ function play(myHand) {
     let result;
 
     if (myHand === cpuHand) {
-        result = 'あいこ！';
+        result = 'あいこ';
         draw++;
     } else if (
-        (myHand === 'グー' && cpuHand === 'チョキ') ||
-        (myHand === 'チョキ' && cpuHand === 'パー') ||
-        (myHand === 'パー' && cpuHand === 'グー')
+        (myHand === 'うぇい' && cpuHand === 'かなちゃん') ||
+        (myHand === 'かなちゃん' && cpuHand === 'てるき') ||
+        (myHand === 'てるき' && cpuHand === 'うぇい')
     ) {
-        result = 'あなたの勝ち！！🎉';
+        result = 'あなたの勝ち！！';
         win++;
     } else {
-        result = 'あなたの負け……';
+        result = 'あなたの負け';
         lose++;
     }
 
